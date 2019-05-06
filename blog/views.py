@@ -14,3 +14,8 @@ def hello_world(request):
 def one_article(request):
     article = Article.objects.all()[0]
     return HttpResponse('title: %s, brief: %s, content: %s,id: %s, publish_date: %s' % (article.title, article.brief, article.content, article.id, article.publish_date))
+
+
+def get_index_page(request):
+    articles = Article.objects.all()
+    return render(request, 'blog/index.html', {'article_list': articles})
