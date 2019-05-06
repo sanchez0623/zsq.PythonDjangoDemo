@@ -16,11 +16,14 @@
 
 <body>
     <div class="container page-header">
-        <h1>文章标题1</h1>
+        <h1>{{ current_article.title }}</h1>
     </div>
     <div class="container body-main">
         <div>
-            <p>内容1</p>
+            {% for section in section_article %}
+            <p>{{ section }}</p>
+            {% endfor %}
+            <!-- <p>{{ current_article.content }}</p> -->
         </div>
     </div>
 </body>
