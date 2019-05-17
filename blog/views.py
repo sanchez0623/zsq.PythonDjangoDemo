@@ -21,7 +21,19 @@ def get_index_page(request):
     return render(request, 'blog/index.html', {'article_list': articles})
 
 
-def get_detail_page(request):
-    current_article = Article.objects.all()[0]
-    section_article=current_article.content.split('\n')
-    return render(request, 'blog/detail.html', {'current_article': current_article,'section_article':section_article})
+# def get_detail_page(request):
+#     current_article = Article.objects.all()[0]
+#     section_article=current_article.content.split('\n')
+#     return render(request, 'blog/detail.html', {'current_article': current_article,'section_article':section_article})
+
+# 获取某一个id的文章
+def get_detail_page(request, article_id):
+    all_article = Article.objects.all()
+    current_article = None
+    for article in all_article:
+        if article.id == article_id:
+            current_article = article
+            break
+
+    section_article = current_article.content.split('\n')
+    return render(request, 'blog/detail.html', {'current_article': current_article, 'section_article': section_article})
